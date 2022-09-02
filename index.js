@@ -18,7 +18,7 @@ app.post("/apps", (req, res) => {
 */
 
 
-// Get ALL tools
+// Get all tools
 app.get("/apps", async(req, res) => {
     try {
         const ttApps = await apps.find();
