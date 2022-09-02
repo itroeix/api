@@ -10,7 +10,7 @@ If you uncomment this, they will be able to add ANY application, it is very dang
 app.post("/apps", (req, res) => {
     const tool = new apps(req.body)
     tool.save().then( () => {
-        res.status(201).send("Tool Added!");
+        res.status(201).send("Tool added");
     }).catch( (e) => {
         res.status(400).send(e);
     })
@@ -28,7 +28,7 @@ app.get("/apps", async(req, res) => {
     }
 })
 
-// Get apps by categories
+// Get tools by categories
 app.get("/apps/category/:id", async(req, res) => {
     const id = req.params.id
     const find = await apps.find({
@@ -37,7 +37,7 @@ app.get("/apps/category/:id", async(req, res) => {
     res.send(find);
 })
 
-// Search apps
+// Search tools
 app.get("/apps/search/:q", async(req, res) => {
     const id = req.params.q
 
