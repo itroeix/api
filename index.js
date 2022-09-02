@@ -2,11 +2,13 @@ const express = require("express");
 require("./db/connection");
 const apps = require("./db/models/Apps")
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
+const cors = require("cors"); 
+app.use(cors());
 app.use(express.json());
 
-/*
-If you uncomment this, they will be able to add ANY application, it is very dangerous if you do not do it with an approval.
+
+//If you uncomment this, they will be able to add ANY application, it is very dangerous if you do not do it with an approval.
 app.post("/apps", (req, res) => {
     const tool = new apps(req.body)
     tool.save().then( () => {
@@ -15,16 +17,16 @@ app.post("/apps", (req, res) => {
         res.status(400).send(e);
     })
 })
-*/
+
 
 
 // Get all tools
 app.get("/apps", async(req, res) => {
     try {
         const ttApps = await apps.find();
-        res.send(ttApps);
+        res.json(ttApps);
     } catch(e) {
-        res.send(e);
+        res.json(e);
     }
 })
 
@@ -34,7 +36,7 @@ app.get("/apps/category/:id", async(req, res) => {
     const find = await apps.find({
         "category": id
       })
-    res.send(find);
+    res.json(find);
 })
 
 // Search tools
@@ -42,7 +44,7 @@ app.get("/apps/search/:search", async(req, res) => {
     const id = req.params.search
 
     const find = await apps.find({"name": {$regex: `${id}`}})
-    res.send(find);
+    res.json(find);
 })
 
 app.listen(port);
