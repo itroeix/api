@@ -4,7 +4,8 @@
   "description": "My apis created by me, in a single repository",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "bruh":"bruh"
   },
   "repository": {
     "type": "git",
