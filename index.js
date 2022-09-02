@@ -38,8 +38,8 @@ app.get("/apps/category/:id", async(req, res) => {
 })
 
 // Search tools
-app.get("/apps/search/:q", async(req, res) => {
-    const id = req.params.q
+app.get("/apps/search/:search", async(req, res) => {
+    const id = req.params.search
 
     const find = await apps.find({"name": {$regex: `${id}`}})
     res.send(find);
