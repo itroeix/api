@@ -42,8 +42,7 @@ app.get("/apps/category/:id", async(req, res) => {
 // Search tools
 app.get("/apps/search/:search", async(req, res) => {
     const id = req.params.search
-
-    const find = await apps.find({"name": {$regex: `${id}`}}).sort({$natural:-1})
+    const find = await apps.find({"lower": {$regex: `${id}`}}).sort({$natural:-1})
     res.json(find);
 })
 
