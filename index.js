@@ -7,7 +7,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-
+/*
 //If you uncomment this, they will be able to add ANY application, it is very dangerous if you do not do it with an approval.
 app.post("/apps", (req, res) => {
     const tool = new apps(req.body)
@@ -17,7 +17,7 @@ app.post("/apps", (req, res) => {
         res.status(400).send(e);
     })
 })
-
+*/
 
 
 // Get all tools
