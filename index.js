@@ -23,7 +23,7 @@ app.post("/apps", (req, res) => {
 // Get all tools
 app.get("/apps", async(req, res) => {
     try {
-        const ttApps = await apps.find();
+        const ttApps = await apps.find().sort({$natural:-1})
         res.json(ttApps);
     } catch(e) {
         res.json(e);
@@ -33,9 +33,9 @@ app.get("/apps", async(req, res) => {
 // Get tools by categories
 app.get("/apps/category/:id", async(req, res) => {
     const id = req.params.id
-    const find = await apps.find({
+    const find = await apps.find(({
         "category": id
-      })
+      })).sort({$natural:-1})
     res.json(find);
 })
 
@@ -43,7 +43,7 @@ app.get("/apps/category/:id", async(req, res) => {
 app.get("/apps/search/:search", async(req, res) => {
     const id = req.params.search
 
-    const find = await apps.find({"name": {$regex: `${id}`}})
+    const find = await apps.find({"name": {$regex: `${id}`}}).sort({$natural:-1})
     res.json(find);
 })
 
