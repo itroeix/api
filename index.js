@@ -4,20 +4,25 @@ const apps = require("./db/models/Apps")
 const app = express();
 const port = process.env.PORT || 4000;
 const cors = require("cors"); 
+const rateLimit = require('express-rate-limit')
+
 app.use(cors());
 app.use(express.json());
 
-/*
-//If you uncomment this, they will be able to add ANY application, it is very dangerous if you do not do it with an approval.
-app.post("/apps", (req, res) => {
+const apiRequestLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 3 // limit each IP to 2 requests per windowMs
+})
+
+app.post("/apps", apiRequestLimiter, (req, res) => {
     const tool = new apps(req.body)
     tool.save().then( () => {
-        res.status(201).send("Tool added");
+        res.status(201).json({"message":"tool added"});
     }).catch( (e) => {
         res.status(400).send(e);
     })
 })
-*/
+
 
 
 // Get all tools
