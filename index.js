@@ -11,7 +11,7 @@ app.use(express.json());
 
 const apiRequestLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 3 // limit each IP to 2 requests per windowMs
+    max: 999999 // limit each IP to 2 requests per windowMs
 })
 
 app.post("/apps", apiRequestLimiter, (req, res) => {
