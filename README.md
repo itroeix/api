@@ -13,3 +13,5 @@ Here are the API paths of thesetools:
 `/apps/category/(category here)`: Show tools by category, the categories are: ide, apis, video, text, design, vm
 
 `/apps/search/(search anything here)`: You can search any tool
+
+`/apps/id/(id)`: Show app by id

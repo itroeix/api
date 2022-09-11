@@ -44,6 +44,20 @@ app.get("/apps/category/:id", async(req, res) => {
     res.json(find);
 })
 
+// Get tools by categories
+app.get("/apps/id/:id", async(req, res) => {
+    try {
+        const id = req.params.id
+        const find = await apps.find(({
+            "_id": id
+        })).sort({$natural:-1})
+        res.json(find);
+    } catch(e) {
+        res.json({message:"Error"})
+    }
+})
+
+
 // Search tools
 app.get("/apps/search/:search", async(req, res) => {
     const id = req.params.search
